@@ -37,11 +37,11 @@ jobs:
       with:
         resource-group: '${{ env.RESOURCE_GROUP }}' 
         cluster-name: '${{ env.CLUSTER_NAME }}'
-    # - name: Install Runner
-    #   run: |
-    #       kubectl apply -f ./runner/cert-manager.yaml 
-    #       kubectl create -f ./runner/actions-runner-controller.yaml 
-    #       kubectl create secret generic controller-manager  -n actions-runner-system --from-literal=github_token=${{ secrets.RUNNER_TOKEN }}
-    #       sleep 90
-    #       kubectl apply -f ./runner/runnerdeployment.yaml 
-    #       kubectl apply -f ./runner/hra-scaler.yaml
+    - name: Install Runner
+      run: |
+          # kubectl apply -f ./runner/cert-manager.yaml 
+          kubectl create -f ./runner/actions-runner-controller.yaml 
+          kubectl create secret generic controller-manager  -n actions-runner-system --from-literal=github_token=${{ secrets.RUNNER_TOKEN }}
+          sleep 90
+          kubectl apply -f ./runner/runnerdeployment.yaml 
+          kubectl apply -f ./runner/hra-scaler.yaml
